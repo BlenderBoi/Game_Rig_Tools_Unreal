@@ -87,9 +87,6 @@ class GRT_PT_Unreal_Module_Panel(bpy.types.Panel):
 
         # box = layout.box()
         # if Utility_Functions.draw_subpanel(box, "Manual Operators", settings, "manual_operator"):
-        if settings.tweak:
-            box = layout.box()
-            draw_rig_ui(box, settings.tweak)
 
         row = layout.row(align=True)
         row.label(text="Unreal")
@@ -150,6 +147,14 @@ class GRT_PT_Unreal_Module_Panel(bpy.types.Panel):
         layout.separator()
         layout.separator()
 
+
+
+        if settings.tweak:
+            box = layout.box()
+            draw_rig_ui(box, settings.tweak)
+
+        layout.separator()
+        layout.separator()
 
         row = layout.row(align=True)
 
