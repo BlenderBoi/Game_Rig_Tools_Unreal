@@ -151,9 +151,11 @@ class GRT_PT_Unreal_Module_Panel(bpy.types.Panel):
         row = layout.row(align=True)
 
 
-        
-        layout.operator("grt.apply_rig", text="Apply Rig")
-        layout.operator("grt.unmute_constraint", text="Unmute Constraint")
+         
+        row.operator("grt.tweak_rig", text="Tweak", icon="MODIFIER")
+        row.operator("grt.apply_rig", text="Apply Rig")
+
+        layout.operator("grt.unmute_constraint", text="Constraint")
 
 
         box = layout.box()

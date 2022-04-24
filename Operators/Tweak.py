@@ -35,8 +35,8 @@ class GRT_OT_Tweak(bpy.types.Operator):
             for loop_obj in bpy.data.objects:
                 loop_obj.select_set(False)
 
-            root.hide_viewport = True 
-            deform.hide_viewport = True 
+            # root.hide_viewport = True 
+            # deform.hide_viewport = True 
             tweak.hide_viewport = False
             tweak.hide_set(False)
 
