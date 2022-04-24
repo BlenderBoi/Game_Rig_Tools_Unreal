@@ -23,11 +23,11 @@ class GRT_OT_Apply_Rig(bpy.types.Operator):
 
         obj = None
 
-        if context.active_object is not None:
-            bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
+        # if context.active_object is not None:
+        #     bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
 
-
-        
+        bpy.ops.grt.unmute_constraint()
+         
 
         root = settings.root
         deform = settings.deform

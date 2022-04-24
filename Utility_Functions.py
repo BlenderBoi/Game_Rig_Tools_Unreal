@@ -39,7 +39,7 @@ def apply_all_bone_constraints_and_pose(obj):
 
     if obj is not None:
 
-        obj.hide_viewport = False 
+        obj.hide_viewport = False
         obj.hide_set(False)
 
         obj.select_set(True)
@@ -47,27 +47,19 @@ def apply_all_bone_constraints_and_pose(obj):
 
         bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
 
-        bone_and_matrix = []
 
         if obj.type == "ARMATURE":
             
             for bone in obj.pose.bones:
 
-                bone_and_matrix.append([bone.name, bone.matrix.copy()])
+
+                mat = bone.matrix.copy()
+
                 for constraint in bone.constraints:
                     constraint.mute = True
         
-
-        bpy.ops.object.mode_set(mode='EDIT', toggle=False)
-
-
-        for item in bone_and_matrix:
-            bone = obj.data.edit_bones.get(item[0])
-            bone.matrix = item[1]
+                bone.matrix = mat
 
 
-        bpy.ops.object.mode_set(mode='POSE', toggle=False)
 
-        bpy.ops.pose.armature_apply(selected=False)
 
-        bpy.ops.object.mode_set(mode='OBJECT', toggle=False)

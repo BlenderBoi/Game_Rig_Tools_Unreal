@@ -60,100 +60,100 @@ class GRT_PT_Unreal_Module_Panel(bpy.types.Panel):
         settings = scn.grt_unreal_module_settings
 
 
+        #
+        # layout.separator()
+        # layout.separator()
+        #
+        # if settings.tweak is not None:
+        #     box = layout.box()
+        #     draw_rig_ui(box, settings.tweak)
+        #
+        #
+        #     layout.separator()
+        #     layout.separator()
+        #
+        #     row = layout.row(align=True)
+        #     row.operator("grt.tweak_rig", text="Tweak", icon="MODIFIER")
+        #     row.operator("grt.bind_rig", text="Bind", icon="OUTLINER_OB_ARMATURE")
+        #
+        #     row = layout.row(align=True)
+        #     row.operator("grt.inspect_unreal_rig", text="Inspect Mannequin", icon="USER")
+        #
+        #     layout.separator()
+        #     layout.operator("grt.show_all", text="Show All", icon="HIDE_OFF")
+        #     layout.separator()
+        #     layout.separator()
+        #
+
+        # box = layout.box()
+        # if Utility_Functions.draw_subpanel(box, "Manual Operators", settings, "manual_operator"):
+
+        row = layout.row(align=True)
+        row.label(text="Unreal")
+
+        if settings.root:
+            operator = row.operator("grt.select_rig", text="", icon="RESTRICT_SELECT_OFF")
+            operator.select_target = "ROOT"
+            row.prop(settings.root, "hide_viewport", text="") 
+
+            operator = row.operator("grt.solo_rig", text="", icon="RADIOBUT_ON")
+            operator.select_target = "ROOT"
+
+        else:
+
+            row.label(text="Not Found", icon="INFO")
+
+
+        row = layout.row(align=True)
+        row.label(text="Tweak")
+
+
+        if settings.tweak:
+
+            operator = row.operator("grt.select_rig", text="", icon="RESTRICT_SELECT_OFF")
+            operator.select_target = "TWEAK"
+
+
+            row.prop(settings.tweak, "hide_viewport", text="") 
+
+            operator = row.operator("grt.solo_rig", text="", icon="RADIOBUT_ON")
+            operator.select_target = "TWEAK"
+
+        else:
+
+            row.label(text="Not Found", icon="INFO")
+
+
+        row = layout.row(align=True)
+        row.label(text="Deform")
+
+
+        if settings.deform:
+
+
+            operator = row.operator("grt.select_rig", text="", icon="RESTRICT_SELECT_OFF")
+            operator.select_target = "DEFORM"
+
+            row.prop(settings.deform, "hide_viewport", text="") 
+
+
+            operator = row.operator("grt.solo_rig", text="", icon="RADIOBUT_ON")
+            operator.select_target = "DEFORM"
+
+        else:
+
+            row.label(text="Not Found", icon="INFO")
 
         layout.separator()
         layout.separator()
 
-        if settings.tweak is not None:
-            box = layout.box()
-            draw_rig_ui(box, settings.tweak)
+
+        row = layout.row(align=True)
 
 
-            layout.separator()
-            layout.separator()
-
-            row = layout.row(align=True)
-            row.operator("grt.tweak_rig", text="Tweak", icon="MODIFIER")
-            row.operator("grt.bind_rig", text="Bind", icon="OUTLINER_OB_ARMATURE")
-
-            row = layout.row(align=True)
-            row.operator("grt.inspect_unreal_rig", text="Inspect Mannequin", icon="USER")
-
-            layout.separator()
-            layout.operator("grt.show_all", text="Show All", icon="HIDE_OFF")
-            layout.separator()
-            layout.separator()
-
-
-        box = layout.box()
-        if Utility_Functions.draw_subpanel(box, "Manual Operators", settings, "manual_operator"):
-
-            row = layout.row(align=True)
-            row.label(text="Unreal")
-
-            if settings.root:
-                operator = row.operator("grt.select_rig", text="", icon="RESTRICT_SELECT_OFF")
-                operator.select_target = "ROOT"
-                row.prop(settings.root, "hide_viewport", text="") 
-
-                operator = row.operator("grt.solo_rig", text="", icon="RADIOBUT_ON")
-                operator.select_target = "ROOT"
-
-            else:
-
-                row.label(text="Not Found", icon="INFO")
-
-
-            row = layout.row(align=True)
-            row.label(text="Tweak")
-
-
-            if settings.tweak:
-
-                operator = row.operator("grt.select_rig", text="", icon="RESTRICT_SELECT_OFF")
-                operator.select_target = "TWEAK"
-
-
-                row.prop(settings.tweak, "hide_viewport", text="") 
-
-                operator = row.operator("grt.solo_rig", text="", icon="RADIOBUT_ON")
-                operator.select_target = "TWEAK"
-
-            else:
-
-                row.label(text="Not Found", icon="INFO")
-
-
-            row = layout.row(align=True)
-            row.label(text="Deform")
-
-
-            if settings.deform:
-
-
-                operator = row.operator("grt.select_rig", text="", icon="RESTRICT_SELECT_OFF")
-                operator.select_target = "DEFORM"
-
-                row.prop(settings.deform, "hide_viewport", text="") 
-
-
-                operator = row.operator("grt.solo_rig", text="", icon="RADIOBUT_ON")
-                operator.select_target = "DEFORM"
-
-            else:
-
-                row.label(text="Not Found", icon="INFO")
-
-            layout.separator()
-            layout.separator()
-
-
-            row = layout.row(align=True)
-
-
-            
-            layout.operator("grt.apply_rig", text="Apply Rig")
-            layout.operator("grt.unmute_constraint", text="Unmute Constraint")
+        
+        layout.operator("grt.apply_rig", text="Apply Rig")
+        layout.operator("grt.unmute_constraint", text="Unmute Constraint")
 
 
         box = layout.box()
