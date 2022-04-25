@@ -91,7 +91,7 @@ def register():
 
 
 def unregister():
-    bpy.utils.unregister_class(GRT_OT_Select_Rig)
+    bpy.utils.unregister_class(GRT_OT_Solo_Rig)
 
 
 if __name__ == "__main__":

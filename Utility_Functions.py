@@ -49,17 +49,33 @@ def apply_all_bone_constraints_and_pose(obj):
 
 
         if obj.type == "ARMATURE":
+
+            select_rem = []
+
+            for bone in obj.data.bones:
+
+                select = bone.select
+                select_rem.append([select, bone])
+
+                bone.select = True
+
+            bpy.ops.pose.visual_transform_apply()
+
+            for rem in select_rem:
+                
+                bone = rem[1]
+                bone.select = rem[0]
             
+            # for bone in obj.pose.bones:
+            #
+            #     mat = bone.matrix.copy()
+            #     bone.matrix = mat
+
+
             for bone in obj.pose.bones:
-
-
-                mat = bone.matrix.copy()
-
                 for constraint in bone.constraints:
                     constraint.mute = True
-        
-                bone.matrix = mat
 
-        bpy.ops.pose.armature_apply(selected=False)
+        # bpy.ops.pose.armature_apply(selected=False)
 
 
