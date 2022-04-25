@@ -46,10 +46,11 @@ class GRT_OT_Apply_Rig(bpy.types.Operator):
             context.view_layer.objects.active = deform 
 
 
-            Utility_Functions.apply_all_bone_constraints_and_pose(tweak, constraint=False, mute=False, pose=True) 
             Utility_Functions.apply_all_bone_constraints_and_pose(deform, constraint=True, mute=True, pose=True) 
             Utility_Functions.apply_all_bone_constraints_and_pose(root, constraint=True, mute=True, pose=True) 
 
+
+            Utility_Functions.apply_all_bone_constraints_and_pose(tweak, constraint=False, mute=False, pose=True) 
 
 
 
