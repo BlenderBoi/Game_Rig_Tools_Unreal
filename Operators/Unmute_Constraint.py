@@ -34,10 +34,16 @@ class GRT_OT_Unmute_Constraint(bpy.types.Operator):
 
 
             for bone in deform.pose.bones:
+                # constraint = bone.constraints.new("COPY_TRANSFORMS")
+                # constraint.target = settings.tweak
+                # constraint.subtarget = bone.name
                 for constraint in bone.constraints:
                     constraint.mute = False
 
             for bone in root.pose.bones:
+                # constraint = bone.constraints.new("COPY_TRANSFORMS")
+                # constraint.target = settings.tweak
+                # constraint.subtarget = bone.name
                 for constraint in bone.constraints:
                     constraint.mute = False
 

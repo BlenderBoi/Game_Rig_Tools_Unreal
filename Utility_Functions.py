@@ -35,7 +35,7 @@ def draw_subpanel(layout, label, source, property):
     return state 
 
 
-def apply_all_bone_constraints_and_pose(obj):
+def apply_all_bone_constraints_and_pose(obj,constraint=True, mute=True, pose=True):
 
     if obj is not None:
 
@@ -50,32 +50,23 @@ def apply_all_bone_constraints_and_pose(obj):
 
         if obj.type == "ARMATURE":
 
-            select_rem = []
+            bones = obj.data.bones
+            # for bone in bones:
+            #     bones.active = bone
+            #     bpy.ops.constraint.apply(constraint="Copy Transforms", owner='BONE')
+    
+            if constraint:
+                for bone in obj.pose.bones:
 
-            for bone in obj.data.bones:
+                    mat = bone.matrix.copy()
+                    bone.matrix = mat
 
-                select = bone.select
-                select_rem.append([select, bone])
+            if mute:
+                for bone in obj.pose.bones:
+                    for constraint in bone.constraints:
+                        constraint.mute = True
 
-                bone.select = True
-
-            bpy.ops.pose.visual_transform_apply()
-
-            for rem in select_rem:
-                
-                bone = rem[1]
-                bone.select = rem[0]
-            
-            # for bone in obj.pose.bones:
-            #
-            #     mat = bone.matrix.copy()
-            #     bone.matrix = mat
-
-
-            for bone in obj.pose.bones:
-                for constraint in bone.constraints:
-                    constraint.mute = True
-
-        # bpy.ops.pose.armature_apply(selected=False)
+            if pose:
+                bpy.ops.pose.armature_apply(selected=False)
 
 
