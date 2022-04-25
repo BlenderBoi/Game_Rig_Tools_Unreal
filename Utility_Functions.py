@@ -45,7 +45,7 @@ def apply_all_bone_constraints_and_pose(obj):
         obj.select_set(True)
         bpy.context.view_layer.objects.active = obj
 
-        bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
+        bpy.ops.object.mode_set(mode='POSE', toggle=False)
 
 
         if obj.type == "ARMATURE":
@@ -60,6 +60,6 @@ def apply_all_bone_constraints_and_pose(obj):
         
                 bone.matrix = mat
 
-
+        bpy.ops.pose.armature_apply(selected=False)
 
 
