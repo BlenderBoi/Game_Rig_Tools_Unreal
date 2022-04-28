@@ -26,9 +26,11 @@ class GRT_OT_Switch_Parent_Armature(bpy.types.Operator):
                 if modifier.type == "ARMATURE":
 
                     if modifier.object == deform:
+                        object.parent = root
                         modifier.object = root  
 
                     elif modifier.object == root:
+                        object.parent = deform 
                         modifier.object = deform
 
         return {'FINISHED'}
