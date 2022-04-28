@@ -53,6 +53,8 @@ class GRT_OT_Apply_Rig(bpy.types.Operator):
             Utility_Functions.apply_all_bone_constraints_and_pose(tweak, constraint=False, mute=False, pose=True) 
 
 
+        if context.active_object is not None:
+            bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
 
 
 

@@ -88,20 +88,6 @@ class GRT_PT_Unreal_Module_Panel(bpy.types.Panel):
         # box = layout.box()
         # if Utility_Functions.draw_subpanel(box, "Manual Operators", settings, "manual_operator"):
 
-        row = layout.row(align=True)
-        row.label(text="Unreal")
-
-        if settings.root:
-            operator = row.operator("grt.select_rig", text="", icon="RESTRICT_SELECT_OFF")
-            operator.select_target = "ROOT"
-            row.prop(settings.root, "hide_viewport", text="") 
-
-            operator = row.operator("grt.solo_rig", text="", icon="RADIOBUT_ON")
-            operator.select_target = "ROOT"
-
-        else:
-
-            row.label(text="Not Found", icon="INFO")
 
 
         row = layout.row(align=True)
@@ -144,6 +130,25 @@ class GRT_PT_Unreal_Module_Panel(bpy.types.Panel):
 
             row.label(text="Not Found", icon="INFO")
 
+
+        row = layout.row(align=True)
+        row.label(text="Unreal")
+
+        if settings.root:
+            operator = row.operator("grt.select_rig", text="", icon="RESTRICT_SELECT_OFF")
+            operator.select_target = "ROOT"
+            row.prop(settings.root, "hide_viewport", text="") 
+
+            operator = row.operator("grt.solo_rig", text="", icon="RADIOBUT_ON")
+            operator.select_target = "ROOT"
+
+        else:
+
+            row.label(text="Not Found", icon="INFO")
+
+
+
+
         layout.separator()
         layout.separator()
 
@@ -164,6 +169,9 @@ class GRT_PT_Unreal_Module_Panel(bpy.types.Panel):
         row.operator("grt.apply_rig", text="Apply Rig")
 
         layout.operator("grt.unmute_constraint", text="Constraint")
+        layout.operator("grt.switch_parent_armature", text="Switch Parent Armature", icon="UV_SYNC_SELECT")
+        layout.operator("grt.copy_additional_bones_to_root", text="Copy Additional Bones To Root", icon="BONE_DATA")
+
 
 
         box = layout.box()

@@ -11,8 +11,10 @@ from . import Bind
 from . import Inspect_Unreal_Rig
 from . import Show_All
 from . import Reset
+from . import Switch_Parent_Armature
+from . import Copy_Additional_Bone_To_Root
 
-modules = [Reset, Show_All, Inspect_Unreal_Rig, Tweak, Bind, Unmute_Constraint, Apply_Rig, Append_Mannequin, Select_Rig, Solo_Rig]
+modules = [Copy_Additional_Bone_To_Root, Switch_Parent_Armature, Reset, Show_All, Inspect_Unreal_Rig, Tweak, Bind, Unmute_Constraint, Apply_Rig, Append_Mannequin, Select_Rig, Solo_Rig]
 
 
 def register():

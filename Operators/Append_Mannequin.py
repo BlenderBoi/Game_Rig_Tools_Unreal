@@ -81,11 +81,13 @@ class GRT_OT_Append_Mannequin(bpy.types.Operator):
 
                 if "root" in obj.name:
                     settings.root = obj
+                    obj.show_in_front = True
                     obj.select_set(False)
                     # obj.hide_viewport = True
 
                 if "UE4_mannequin_DEFORM" in obj.name:
                     settings.deform = obj
+                    obj.show_in_front = True
                     obj.select_set(False)
                     # obj.hide_viewport = True
 
