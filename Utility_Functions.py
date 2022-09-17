@@ -2,6 +2,16 @@
 
 import bpy
 import os
+import pathlib
+
+asset_version = {
+        "UE4": "pre_extracted_manny_system_ue5.blend", 
+        "UE5": "pre_extracted_mannequin_system_ue4.blend"
+        }
+
+
+
+
 
 def get_asset_folder():
     
@@ -11,10 +21,12 @@ def get_asset_folder():
 
     return asset_directory
 
-def get_pre_extracted_mannequin_path():
+def get_pre_extracted_mannequin_path(version):
     
+
+
     asset_directory = get_asset_folder() 
-    mannequin_path = os.path.join(asset_directory, "pre_extracted_mannequin_system.blend")
+    mannequin_path = os.path.join(asset_directory, asset_version[version])
     
     return mannequin_path
 

@@ -16,12 +16,16 @@ import pathlib
 
 
 
+ENUM_Version = [("UE5","Unreal 5 (Manny)","Unreal Engine 5 (Manny)"),("UE4","Unreal 4 (Mannequin)","Unreal Engine 4 (Mannequin)")]
 
 class GRT_OT_Append_Mannequin(bpy.types.Operator):
     """Append Mannequin"""
     bl_idname = "grt.append_mannequin"
     bl_label = "Append Mannequin"
     bl_options = {"REGISTER", "UNDO"}
+
+    version: bpy.props.EnumProperty(items=ENUM_Version)
+
 
     @classmethod
     def poll(cls, context):
@@ -42,12 +46,15 @@ class GRT_OT_Append_Mannequin(bpy.types.Operator):
         objects = list(bpy.data.objects)
         collections = list(bpy.data.collections)
 
-        mannequin_path = Utility_Functions.get_pre_extracted_mannequin_path()
+
+
+
+        mannequin_path = Utility_Functions.get_pre_extracted_mannequin_path(self.version)
         mannequin_path = pathlib.Path(mannequin_path)
         
         blendfile = str(mannequin_path)
         section = "\\Collection\\"
-        collection = "Mannequin_UE4"
+        collection = "Mannequin"
 
 
         filepath = blendfile + section + collection

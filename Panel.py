@@ -52,12 +52,17 @@ class GRT_PT_Unreal_Module_Panel(bpy.types.Panel):
 
         layout = self.layout
 
-        row = layout.row(align=True)
-        row.operator("grt.append_mannequin", text="Initiate Mannequin", icon="OUTLINER_OB_ARMATURE")
-        row.operator("grt.reset", text="", icon="FILE_REFRESH")
-        
+
         scn = context.scene
         settings = scn.grt_unreal_module_settings
+
+        layout.prop(settings, "rig", text="")
+
+        row = layout.row(align=True)
+        operator = row.operator("grt.append_mannequin", text="Initiate Mannequin", icon="OUTLINER_OB_ARMATURE")
+        operator.version = settings.rig
+        row.operator("grt.reset", text="", icon="FILE_REFRESH")
+        
 
 
         #

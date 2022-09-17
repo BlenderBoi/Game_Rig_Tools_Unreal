@@ -11,6 +11,9 @@ def filter_armature_root(self, object):
         if not object in filter_objects:
             return True
 
+
+ENUM_Rig = [("UE5","Unreal 5 (Manny)","Manny"),("UE4","Unreal 4 (Mannequin)","Mannequin")]
+
 class GRT_Unreal_Module_Settings(bpy.types.PropertyGroup):
 
     root: bpy.props.PointerProperty(type=bpy.types.Object, poll=filter_armature_root)
@@ -19,6 +22,9 @@ class GRT_Unreal_Module_Settings(bpy.types.PropertyGroup):
 
     show_armatures: bpy.props.BoolProperty(default=False)
     manual_operator: bpy.props.BoolProperty(default=False)
+
+    rig: bpy.props.EnumProperty(items=ENUM_Rig)
+
 
 
 classes = [GRT_Unreal_Module_Settings]
