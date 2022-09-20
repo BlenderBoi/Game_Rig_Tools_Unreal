@@ -5,8 +5,8 @@ import os
 import pathlib
 
 asset_version = {
-        "UE4": "pre_extracted_manny_system_ue5.blend", 
-        "UE5": "pre_extracted_mannequin_system_ue4.blend"
+        "UE5": "pre_extracted_manny_system_ue5.blend", 
+        "UE4": "pre_extracted_mannequin_system_ue4.blend"
         }
 
 
