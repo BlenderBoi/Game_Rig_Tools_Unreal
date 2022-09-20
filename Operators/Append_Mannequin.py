@@ -106,6 +106,20 @@ class GRT_OT_Append_Mannequin(bpy.types.Operator):
                     bpy.ops.object.mode_set(mode='POSE', toggle=False)
 
 
+                if "UE5_Manny_DEFORM" in obj.name:
+                    settings.deform = obj
+                    obj.show_in_front = True
+                    obj.select_set(False)
+                    # obj.hide_viewport = True
+
+                if "UE5_Manny_TWEAK" in obj.name:
+                    settings.tweak = obj
+                    obj.select_set(True)
+                    obj.show_in_front = True
+                    bpy.context.view_layer.objects.active = obj 
+                    bpy.ops.object.mode_set(mode='POSE', toggle=False)
+
+
 
 
 
