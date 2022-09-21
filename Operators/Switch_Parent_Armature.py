@@ -25,6 +25,8 @@ class GRT_OT_Switch_Parent_Armature(bpy.types.Operator):
             for modifier in object.modifiers:
                 if modifier.type == "ARMATURE":
 
+                    mat = object.matrix_world.copy()
+
                     if modifier.object == deform:
                         object.parent = root
                         modifier.object = root  
@@ -32,6 +34,8 @@ class GRT_OT_Switch_Parent_Armature(bpy.types.Operator):
                     elif modifier.object == root:
                         object.parent = deform 
                         modifier.object = deform
+
+                    object.matrix_world = mat
 
         return {'FINISHED'}
 
