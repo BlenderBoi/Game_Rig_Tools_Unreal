@@ -173,7 +173,7 @@ class GRT_PT_Unreal_Module_Panel(bpy.types.Panel):
         row.operator("grt.tweak_rig", text="Tweak", icon="MODIFIER")
         row.operator("grt.apply_rig", text="Apply Rig")
 
-        layout.operator("grt.unmute_constraint", text="Constraint")
+        # layout.operator("grt.unmute_constraint", text="Constraint")
         layout.operator("grt.switch_parent_armature", text="Switch Parent Armature", icon="UV_SYNC_SELECT")
         layout.operator("grt.copy_additional_bones_to_root", text="Copy Additional Bones To Root", icon="BONE_DATA")
 
