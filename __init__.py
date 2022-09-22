@@ -2,7 +2,7 @@
 bl_info = {
     "name": "Game Rig Tools - Unreal Module",
     "author": "BlenderBoi",
-    "version": (1, 1, 0),
+    "version": (1, 1, 1),
     "blender": (3, 1, 0),
     "description": "Game Rig Tools With Tools Caters to Unreal Workflow",
     "warning": "",
