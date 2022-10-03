@@ -46,7 +46,7 @@ class GRT_UNREAL_user_preferences(bpy.types.AddonPreferences):
 
 
 
-classes = [GRT_UNREAL_user_preferences]
+classes = [GRT_UNREAL_user_preferences, Panel.GRT_PT_Unreal_Module_Panel]
 
 
 
