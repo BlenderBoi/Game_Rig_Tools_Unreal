@@ -53,7 +53,7 @@ class GRT_OT_Append_Mannequin(bpy.types.Operator):
         mannequin_path = pathlib.Path(mannequin_path)
         
         blendfile = str(mannequin_path)
-        section = "\\Collection\\"
+        section = "/Collection/"
         collection = "Mannequin"
 
 
