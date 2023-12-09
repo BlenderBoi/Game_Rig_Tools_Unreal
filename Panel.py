@@ -17,19 +17,40 @@ def draw_rig_ui(layout, obj):
 
 
     row = col.row(align=True)
-    row.prop(obj.data,'layers', index=0, toggle=True, text='Body Parts')
-    row.prop(obj.data,'layers', index=1, toggle=True, text='Joint Tweak')
+    for collection in obj.data.collections:
+        # col.prop(collection,'is_visible', toggle=True, text=collection.name)
+        if collection.name == "GRTU_Body Parts":
+            row.prop(collection,'is_visible', toggle=True, text='Body Parts')
+            # row.prop(obj.data,'collections', text='Body Parts')
+        if collection.name == "GRTU_Joint Tweak":
+            row.prop(collection,'is_visible', toggle=True, text='Joint Tweak')
+        # row.prop(obj.data,'layers', index=1, toggle=True, text='Joint Tweak')
 
-    row = col.row(align=True)
-    row.prop(obj.data,'layers', index=2, toggle=True, text='Fingers')
-    row.prop(obj.data,'layers', index=3, toggle=True, text='Fingers Tweak')
+        if collection.name == "GRTU_Fingers":
+            row = col.row(align=True)
+            row.prop(collection,'is_visible', toggle=True, text='Fingers')
+
+        if collection.name == "GRTU_Fingers Tweak":
+            row.prop(collection,'is_visible', toggle=True, text='Fingers Tweak')
+
+    # row.prop(obj.data,'layers', index=2, toggle=True, text='Fingers')
+    # row.prop(obj.data,'layers', index=3, toggle=True, text='Fingers Tweak')
 
 
-    col.separator()
-    col.separator()
+        if collection.name == "GRTU_Reference Skeleton":
+            col.separator()
+            col.separator()
 
-    row = col.row(align=True)
-    row.prop(obj.data,'layers', index=5, toggle=True, text='Reference Skeleton')
+            row = col.row(align=True)
+            row.prop(collection,'is_visible', toggle=True, text='Reference Skeleton')
+
+        if collection.name == "GRTU_UE4 Skeleton":
+            col.separator()
+            col.separator()
+
+            row = col.row(align=True)
+            row.prop(collection,'is_visible', toggle=True, text='UE4 Skeleton')
+
 
 
     # col.separator()
