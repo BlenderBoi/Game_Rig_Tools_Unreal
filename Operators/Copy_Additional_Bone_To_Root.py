@@ -85,13 +85,15 @@ class GRT_OT_Copy_Additional_Bones_To_Root(bpy.types.Operator):
             bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
 
 
-            c = {}
+            c = bpy.context.copy()
             c["object"] = root
             c["active_object"] = root
             c["selected_objects"] = [root, copy_armature]
             c["selected_editable_objects"] = [root, copy_armature]
 
-            bpy.ops.object.join(c)
+            with bpy.context.temp_override(**c):
+                bpy.ops.object.join()
+
 
             root.select_set(True)
             context.view_layer.objects.active = root
