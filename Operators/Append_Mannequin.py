@@ -1,36 +1,27 @@
-
 import bpy
-from Game_Rig_Tools_Unreal import Utility_Functions
+from .. import Utility_Functions
 
 
 import pathlib
 
 
+ENUM_Version = [
+    ("UE5", "Unreal 5 (Manny)", "Unreal Engine 5 (Manny)"),
+    ("UE4", "Unreal 4 (Mannequin)", "Unreal Engine 4 (Mannequin)"),
+]
 
-
-
-
-
-
-
-
-
-
-ENUM_Version = [("UE5","Unreal 5 (Manny)","Unreal Engine 5 (Manny)"),("UE4","Unreal 4 (Mannequin)","Unreal Engine 4 (Mannequin)")]
 
 class GRT_OT_Append_Mannequin(bpy.types.Operator):
     """Append Mannequin"""
+
     bl_idname = "grt.append_mannequin"
     bl_label = "Append Mannequin"
     bl_options = {"REGISTER", "UNDO"}
 
     version: bpy.props.EnumProperty(items=ENUM_Version)
 
-
     @classmethod
     def poll(cls, context):
-
-
         scn = context.scene
         settings = scn.grt_unreal_module_settings
 
@@ -38,27 +29,23 @@ class GRT_OT_Append_Mannequin(bpy.types.Operator):
             return True
 
     def execute(self, context):
-
         if context.active_object:
-            bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
-
+            bpy.ops.object.mode_set(mode="OBJECT", toggle=False)
 
         objects = list(bpy.data.objects)
         collections = list(bpy.data.collections)
 
-
-
-
-        mannequin_path = Utility_Functions.get_pre_extracted_mannequin_path(self.version)
+        mannequin_path = Utility_Functions.get_pre_extracted_mannequin_path(
+            self.version
+        )
         mannequin_path = pathlib.Path(mannequin_path)
-        
+
         blendfile = str(mannequin_path)
         section = "/Collection/"
         collection = "Mannequin"
 
-
         filepath = blendfile + section + collection
-        directory = blendfile + section 
+        directory = blendfile + section
         filename = collection
 
         bpy.ops.wm.append(filename=filename, directory=directory)
@@ -67,25 +54,13 @@ class GRT_OT_Append_Mannequin(bpy.types.Operator):
 
         for obj in bpy.data.objects:
             if not obj in objects:
-                appended_objects.append(obj) 
-
-
-
-
-
-
-
+                appended_objects.append(obj)
 
         scn = context.scene
         settings = scn.grt_unreal_module_settings
 
-
-
-
-
         for obj in appended_objects:
             if obj.type == "ARMATURE":
-
                 if "root" in obj.name:
                     settings.root = obj
                     obj.show_in_front = True
@@ -102,9 +77,8 @@ class GRT_OT_Append_Mannequin(bpy.types.Operator):
                     settings.tweak = obj
                     obj.select_set(True)
                     obj.show_in_front = True
-                    bpy.context.view_layer.objects.active = obj 
-                    bpy.ops.object.mode_set(mode='POSE', toggle=False)
-
+                    bpy.context.view_layer.objects.active = obj
+                    bpy.ops.object.mode_set(mode="POSE", toggle=False)
 
                 if "UE5_Manny_DEFORM" in obj.name:
                     settings.deform = obj
@@ -116,14 +90,10 @@ class GRT_OT_Append_Mannequin(bpy.types.Operator):
                     settings.tweak = obj
                     obj.select_set(True)
                     obj.show_in_front = True
-                    bpy.context.view_layer.objects.active = obj 
-                    bpy.ops.object.mode_set(mode='POSE', toggle=False)
+                    bpy.context.view_layer.objects.active = obj
+                    bpy.ops.object.mode_set(mode="POSE", toggle=False)
 
-
-
-
-
-        return {'FINISHED'}
+        return {"FINISHED"}
 
 
 def register():
@@ -136,4 +106,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-

@@ -1,9 +1,10 @@
-
 import bpy
-from Game_Rig_Tools_Unreal import Utility_Functions
+from .. import Utility_Functions
+
 
 class GRT_OT_Apply_Rig(bpy.types.Operator):
     """Apply Rig Pose"""
+
     bl_idname = "grt.apply_rig"
     bl_label = "Apply Rig"
 
@@ -16,58 +17,43 @@ class GRT_OT_Apply_Rig(bpy.types.Operator):
             return True
 
     def execute(self, context):
-
-
         scn = context.scene
         settings = scn.grt_unreal_module_settings
 
         obj = None
 
         if context.active_object is not None:
-            bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
+            bpy.ops.object.mode_set(mode="OBJECT", toggle=False)
 
         bpy.ops.grt.unmute_constraint()
-         
 
         root = settings.root
         deform = settings.deform
         tweak = settings.tweak
-  
-
 
         if deform and tweak:
-
             for obj in bpy.data.objects:
                 obj.select_set(False)
 
-
             deform.select_set(True)
             tweak.select_set(True)
-            context.view_layer.objects.active = deform 
+            context.view_layer.objects.active = deform
 
+            Utility_Functions.apply_all_bone_constraints_and_pose(
+                deform, constraint=True, mute=True, pose=True
+            )
+            Utility_Functions.apply_all_bone_constraints_and_pose(
+                root, constraint=True, mute=True, pose=True
+            )
 
-            Utility_Functions.apply_all_bone_constraints_and_pose(deform, constraint=True, mute=True, pose=True) 
-            Utility_Functions.apply_all_bone_constraints_and_pose(root, constraint=True, mute=True, pose=True) 
-
-
-            Utility_Functions.apply_all_bone_constraints_and_pose(tweak, constraint=False, mute=False, pose=True) 
-
+            Utility_Functions.apply_all_bone_constraints_and_pose(
+                tweak, constraint=False, mute=False, pose=True
+            )
 
         if context.active_object is not None:
-            bpy.ops.object.mode_set(mode='OBJECT', toggle=False)
+            bpy.ops.object.mode_set(mode="OBJECT", toggle=False)
 
-
-
-
-                
-
-
-
-
-
-
-
-        return {'FINISHED'}
+        return {"FINISHED"}
 
 
 def register():
@@ -80,4 +66,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-

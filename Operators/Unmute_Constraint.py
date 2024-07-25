@@ -1,9 +1,10 @@
-
 import bpy
-from Game_Rig_Tools_Unreal import Utility_Functions
+from .. import Utility_Functions
+
 
 class GRT_OT_Unmute_Constraint(bpy.types.Operator):
     """Unmute Constraint"""
+
     bl_idname = "grt.unmute_constraint"
     bl_label = "Unmute Constraint"
 
@@ -16,8 +17,6 @@ class GRT_OT_Unmute_Constraint(bpy.types.Operator):
             return True
 
     def execute(self, context):
-
-
         scn = context.scene
         settings = scn.grt_unreal_module_settings
 
@@ -31,8 +30,6 @@ class GRT_OT_Unmute_Constraint(bpy.types.Operator):
         tweak = settings.tweak
 
         if deform and root and tweak:
-
-
             for bone in deform.pose.bones:
                 # constraint = bone.constraints.new("COPY_TRANSFORMS")
                 # constraint.target = settings.tweak
@@ -47,7 +44,7 @@ class GRT_OT_Unmute_Constraint(bpy.types.Operator):
                 for constraint in bone.constraints:
                     constraint.mute = False
 
-        return {'FINISHED'}
+        return {"FINISHED"}
 
 
 def register():
@@ -60,4 +57,3 @@ def unregister():
 
 if __name__ == "__main__":
     register()
-
